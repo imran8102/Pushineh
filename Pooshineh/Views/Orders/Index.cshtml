@@ -1,0 +1,102 @@
+﻿@model IEnumerable<Pooshineh.Models.Table_CartItem>
+
+@{
+    ViewBag.Title = "Index";
+    Pooshineh.Models.ClothingStoreEntities1 db = new Pooshineh.Models.ClothingStoreEntities1();
+    var user = db.Table_User.Where(u => u.PhoneNumber == User.Identity.Name).FirstOrDefault();
+    var cart = db.Table_Cart
+        .Where(o => o.UserID == user.ID)
+        .FirstOrDefault();
+}
+
+<h2>Index</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            Total cost: @cart.TotalCost
+        </th>
+       
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Table_Products.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+
+
+        </tr>
+    }
+
+</table>
+
+@if (TempData["DiscountSuccess"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["DiscountSuccess"]
+    </div>
+}
+
+@if (TempData["DiscountError"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["DiscountError"]
+    </div>
+}
+
+@if (TempData["DiscountUsed"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["DiscountUsed"]
+    </div>
+}
+
+<div id="discountResult"></div>
+@Html.Partial("_DiscountCodePartial", new Pooshineh.Models.DiscountViewModel())
+
+@if (TempData["AddressError"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["AddressError"]
+    </div>
+}
+
+@using (Html.BeginForm("ConfirmOrder", "Orders", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+
+    if (user.Address == null)
+    {
+        <div class="form-group">
+            <input type="text"
+                   class="form-control" placeholder="آدرس خود را وارد کنید" name="address" id="address" style="width: 400px; height: 100px">
+        </div>
+    }
+    else
+    {
+        <div>
+            <input type="text"
+                   class="form-control" placeholder="@user.Address" name="address" id="address" style="width: 400px; height: 100px; max-width: 390px; max-height:90px;">
+        </div>
+    }
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10 my-2">
+            <input type="submit" value="ثبت نهایی سفارش" class="btn btn-warning" />
+        </div>
+    </div>
+
+
+}
+
+
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>

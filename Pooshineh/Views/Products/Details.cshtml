@@ -1,0 +1,77 @@
+﻿@model Pooshineh.Models.Table_Products
+
+@{
+    ViewBag.Title = "Details";
+    Pooshineh.Models.ClothingStoreEntities1 db = new Pooshineh.Models.ClothingStoreEntities1();
+    var user = db.Table_User.Where(u => u.PhoneNumber == User.Identity.Name).SingleOrDefault();
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Table_Products</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductImagePath)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductImagePath)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductQuantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductQuantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Table_Categories.CategoryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Table_Categories.CategoryName)
+        </dd>
+
+    </dl>
+</div>
+@if (user != null)
+    {
+
+        if (user.RoleID == 1)
+        {
+            @Html.ActionLink("Edit", "Edit", new { id = Model.ProductID }, new { @class = "btn btn-warning mx-2" })
+            @Html.ActionLink("Delete", "Delete", new { id = Model.ProductID }, new { @class = "btn btn-danger mx-2" })
+        }
+    }
+
+    @Html.ActionLink("Add to Cart", "AddToCart", "Cart", new { productId = Model.ProductID, quantity = 1 }, new { @class = "btn btn-success mx-2" })
+
+
