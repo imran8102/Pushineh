@@ -6,7 +6,7 @@
     var user = db.Table_User.Where(u => u.PhoneNumber == User.Identity.Name).SingleOrDefault();
 }
 
-<h2>Details</h2>
+
 
 <div>
     <h4>Table_Products</h4>
@@ -63,15 +63,22 @@
     </dl>
 </div>
 @if (user != null)
+{
+
+    if (user.RoleID == 1)
+
     {
-
-        if (user.RoleID == 1)
-        {
-            @Html.ActionLink("Edit", "Edit", new { id = Model.ProductID }, new { @class = "btn btn-warning mx-2" })
-            @Html.ActionLink("Delete", "Delete", new { id = Model.ProductID }, new { @class = "btn btn-danger mx-2" })
-        }
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ProductID }, new { @class = "btn btn-warning mx-2" })
+        @Html.ActionLink("Delete", "Delete", new { id = Model.ProductID }, new { @class = "btn btn-danger mx-2" })
     }
-
-    @Html.ActionLink("Add to Cart", "AddToCart", "Cart", new { productId = Model.ProductID, quantity = 1 }, new { @class = "btn btn-success mx-2" })
+}
+@if (Model.ProductQuantity <= 0)
+{
+    <button class="btn btn-danger p-2" disabled>ناموجود</button>
+}
+else
+{
+    @Html.ActionLink("Add to Cart", "AddToCart", "Cart", new { productId = Model.ProductID, quantity = 1 }, new { @class = "btn btn-success mx-2" });
+}
 
 
