@@ -113,6 +113,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\log.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
     <Content Include="Images\967678.jpg" />
@@ -261,7 +262,6 @@
     <None Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Accounts\Login.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Scripts\bootstrap.bundle.js.map" />
@@ -291,6 +291,7 @@
     <Content Include="Views\Orders\ViewActiveOrders.cshtml" />
     <Content Include="Views\Discounts\Index.cshtml" />
     <Content Include="Views\Discounts\AddDiscountCode.cshtml" />
+    <Content Include="Views\Accounts\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

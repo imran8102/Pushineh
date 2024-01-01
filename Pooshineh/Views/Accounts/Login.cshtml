@@ -1,226 +1,74 @@
 ﻿@model Pooshineh.Models.LoginViewModel
 
 @{
-    ViewBag.Title = "صفحه ورود";
+    ViewBag.Title = "ورود";
+    Layout = null;
 }
-<style>
-    
-:root {
-    --primary-color: #c6c3c3;
-}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/Content/bootstrap.rtl.min.css" rel="stylesheet" />
+    <link href="~/Content/log.css" rel="stylesheet" />
+</head>
 
-body {
-    background-image: url("../Images/galaxyVector.svg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-}
+<body dir="rtl">
+    <div class="wrapper">
 
-.wrapper {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: rgba(0, 0, 0, 0.2);
-}
-a{
-    text-decoration: none;
-    color: #fff;
-}
-a:hover{
-    text-decoration: underline;
-}
-.login-box {
-    position: relative;
-    width: 450px;
-    backdrop-filter: blur(25px);
-    border: 2px solid var(--primary-color);
-    border-radius: 15px;
-    padding: 7.5em 2.5em 4em 2.5em;
-    color: #fff;
-    box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.3);
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
 
-}
-
-.login-header {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--primary-color);
-    width: 140px;
-    height: 70px;
-    border-radius: 0 0 20px 20px;
-}
-
-.login-header span {
-    font-size: 30px;
-    color: #000;
-}
-
-.login-header::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -30px;
-    width: 30px;
-    height: 30px;
-    border-top-right-radius: 50%;
-    background: transparent;
-    box-shadow: 15px 0 0 0 var(--primary-color);
-}
-
-.login-header::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: -30px;
-    width: 30px;
-    height: 30px;
-    border-top-left-radius: 50%;
-    background: transparent;
-    box-shadow: -15px 0 0 0 var(--primary-color);
-}
-
-.input-box {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    margin: 20px 0;
-}
-
-.input-field {
-    width: 100%;
-    height: 55px;
-    font-size: 16px;
-    background: transparent;
-    color: #fff;
-    padding-inline: 20px 50px;
-    border: 2px solid var(--primary-color);
-    border-radius: 30px;
-    outline: none;
-}
-
-#user {
-    margin-bottom: 10px;
-}
-
-.label {
-    position: absolute;
-    top: 15px;
-    right: 20px;
-    transition: 0.2s;
-}
-
-.input-field:focus~.label,
-.input-field:valid~.label {
-    position: absolute;
-    top: -10px;
-    right: 20px;
-    font-size: 14px;
-    background-color: var(--primary-color);
-    border-radius: 30px;
-    color: #000;
-    padding: 0 10px;
-}
-
-.icon {
-    position: absolute;
-    top: 18px;
-    left: 25px;
-    font-size: 20px;
-}
-
-.remember-forgot {
-    display: flex;
-    justify-content: space-between;
-    font-size: 15px;
-}
-
-.input-submit {
-    width: 100%;
-    height: 50px;
-    background: #ececec;
-    font-size: 16px;
-    font-weight: 500;
-    border: none;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: .3s;
-}
-
-.input-submit:hover {
-    background: #000;
-    color: #fff;
-}
-
-.register{
-    text-align: center;
-}
-
-.register a{
-    font-weight: 500;
-}
-
-
-</style>
-
-<div class="wrapper">
-    <h2>Login</h2>
-
-
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-
-        <div class="form-horizontal">
-            <h4>LoginViewModel</h4>
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group">
-                @Html.LabelFor(model => model.PhoneNumber, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+            <div class="login-box">
+                <div class="login-header">
+                    <Span>ورود</Span>
                 </div>
-            </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="input-box">
+                    @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "input-field", required = "required" } })
+                    @Html.LabelFor(model => model.PhoneNumber, "نام کاربری", htmlAttributes: new { @class = "label" })
+                    @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger ms-3 h6 mt-2" })
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                              stroke-width="1.5"
+                              d="M5 20v-1a7 7 0 0 1 7-7v0a7 7 0 0 1 7 7v1m-7-8a4 4 0 1 0 0-8a4 4 0 0 0 0 8" />
+                    </svg>
                 </div>
-            </div>
 
-            <div class="remember-forgot">
-                <div class="remember-me">
-                    <input type="checkbox" id="remember">
-                    <label for="remember">بخاطر سپردن</label>
+                <div class="input-box">
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "input-field", required = "required", type = "password" } })
+                    @Html.LabelFor(model => model.Password, "رمز عبور", htmlAttributes: new { @class = "label" })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger  ms-3 h6 mt-2" })
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path fill="currentColor"
+                              d="M6.615 21q-.67 0-1.143-.472Q5 20.056 5 19.385v-8.77q0-.67.472-1.143Q5.944 9 6.615 9H8V7q0-1.671 1.164-2.836T12 3q1.671 0 2.836 1.164T16 7v2h1.385q.67 0 1.143.472q.472.472.472 1.143v8.77q0 .67-.472 1.143q-.472.472-1.143.472zm0-1h10.77q.269 0 .442-.173t.173-.442v-8.77q0-.269-.173-.442T17.385 10H6.615q-.269 0-.442.173T6 10.615v8.77q0 .269.173.442t.442.173M12 16.5q.633 0 1.066-.434q.434-.433.434-1.066t-.434-1.066Q12.633 13.5 12 13.5t-1.066.434Q10.5 14.367 10.5 15t.434 1.066q.433.434 1.066.434M9 9h6V7q0-1.25-.875-2.125T12 4q-1.25 0-2.125.875T9 7zM6 20V10z" />
+                    </svg>
                 </div>
+
                 <div class="remember-forgot">
-                    <a href="#">بازیابی رمز عبور</a>
+                    <div class="remember-me">
+                        @Html.CheckBox("remember", false, new { id = "remember" })
+                        @Html.Label("remember", "بخاطر سپردن")
+                    </div>
+                    <div class="remember-forgot">
+                        @Html.ActionLink("بازیابی رمز عبور", "#")
+                    </div>
+                </div>
+                <div class="input-box">
+                    @Html.TextBox("submit", "ورود", new { @type = "submit", @class = "input-submit" })
+                </div>
+                <div class="register">
+                    <span>@Html.ActionLink("تا حالا ثبت نام نکرده اید ؟ ثبت نام کنید", "SignUp")</span>
                 </div>
             </div>
-            <div class="input-box">
-                <input type="submit" class="input-submit" value="ورود">
-            </div>
-            <div class="register">
-                <span>تا حالا ثبت نام نکرده اید ؟ <a href="#">ثبت نام</a></span>
-            </div>
-        </div>
-    }
+        }
 
-    <div>
-        @Html.ActionLink("حساب ندارید ؟ ثبت نام کنید", "SignUp", null, new { @class = "link-info" })
     </div>
-</div>
     <script src="~/Scripts/jquery-3.4.1.min.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
+</body>
+</html>

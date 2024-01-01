@@ -276,17 +276,3 @@ textarea {
 
 /* ------------------- */
 
-/* loginpage */
-
-@media only screen and (max-width:564px) {
-    .wrapper {
-        padding: 20px;
-    }
-
-    .login-box {
-        padding: 7.5em 1.5em 4em 1.5em;
-    }
-}
-
-/* loginpage */
-/* ------------------- */
