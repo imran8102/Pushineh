@@ -79,7 +79,7 @@ namespace Pooshineh.Controllers
         public ActionResult SignOut()
         {
             FormsAuthentication.SignOut();
-            return RedirectToAction("Login");
+            return RedirectToAction("Index","Home");
         }
         [HttpGet]
         public ActionResult Edit(int? id)

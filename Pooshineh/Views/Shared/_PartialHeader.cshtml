@@ -1,4 +1,11 @@
-﻿<head>
+﻿@{
+    bool isLoggedIn = true;
+    if (string.IsNullOrWhiteSpace(User.Identity.Name))
+    {
+        isLoggedIn = false;
+    }
+}
+<head>
     <link href="~/Content/headfoot.css" rel="stylesheet" />
     <script src="~/Scripts/bootstrap.bundle.min.js"></script>
 </head>
@@ -7,7 +14,7 @@
 <header>
     <nav class="navbar navbar-expand-lg bg-white shadow p-md-2 navbar-fixed-top">
         <div class="container-fluid ">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="@Url.Action("Index", "Home")">
                 <img src="~/Images/logo1-removebg-preview.png" alt="بوتیک"
                      class="logo rounded-5">
             </a>
@@ -18,47 +25,96 @@
             <div class="collapse navbar-collapse" id="navbarScroll">
                 <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
                     <li class="nav-item mx-md-3 my-2">
-                        <a class="nav-link active" aria-current="page" href="https://localhost:44334/Accounts/Index">خانه</a>
+                        <a class="nav-link active" aria-current="page" href="@Url.Action("Index", "Home")">خانه</a>
                     </li>
                     <li class="nav-item mx-md-3 my-2">
-                        <a class="nav-link" href="#">داشبورد</a>
+                        @Html.ActionLink("محصولات", "Index", "Products", null, new { @class = "nav-link" })
                     </li>
                     <li class="nav-item dropdown mx-md-3 my-2">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                            aria-expanded="false">
-                            محصولات
+                            دسته بندی
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <ul>
-                                <li><a class="dropdown-item" href="#">تیشرت</a></li>
+                                <li><a class="dropdown-item" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 32 32"><path fill="currentColor" d="M20.1 4.04a4.576 4.576 0 0 1-4.24 2.86a4.576 4.576 0 0 1-4.24-2.86L1.238 8.44l2.92 6.884l3.21-1.36V28h17.098V14.015l3.093 1.312l2.92-6.884z" /></svg><br /> تیشرت</a> </li>
+
                                 <li><a class="dropdown-item" href="#">تیشرت یقه گرد</a></li>
-                                <li><a class="dropdown-item" href="#">تیشرت اسپرت</a></li>
+                                <li><a class="dropdown-item" href="#">تیشرت ورزشی</a></li>
                                 <li><a class="dropdown-item" href="#">تیشرت آستین بلند</a></li>
                                 <li><a class="dropdown-item" href="#">تیشرت لش</a></li>
                             </ul>
                             <ul>
-                                <li><a class="dropdown-item" href="#">پیراهن</a></li>
+                                <li><a class="dropdown-item" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 24 24"><g fill="none" fill-rule="evenodd"><path d="M24 0v24H0V0zM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035c-.01-.004-.019-.001-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427c-.002-.01-.009-.017-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093c.012.004.023 0 .029-.008l.004-.014l-.034-.614c-.003-.012-.01-.02-.02-.022m-.715.002a.023.023 0 0 0-.027.006l-.006.014l-.034.614c0 .012.007.02.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z" /><path fill="currentColor" d="M15.847 3c.172 0 .344.003.508.065a2.001 2.001 0 0 1 1.472 2.218l-.158 1.104l1.059.264A3 3 0 0 1 21 9.561V18a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V9.562a3 3 0 0 1 2.272-2.91l1.059-.265l-.158-1.104a2.001 2.001 0 0 1 1.472-2.218C7.81 3.003 7.981 3 8.153 3zM12 7.4L13.92 5h-3.84zm3.71-1.436L13.553 8.66l1.652 1.826l.503-4.52Zm-7.42 0l.504 4.521l1.652-1.826l-2.155-2.695ZM16 14a1 1 0 1 0 0 2h1a1 1 0 1 0 0-2z" /></g></svg><br /> پیراهن</a></li>
                                 <li><a class="dropdown-item" href="#">پیراهن رسمی</a></li>
                                 <li><a class="dropdown-item" href="#">پیراهن نخی</a></li>
                                 <li><a class="dropdown-item" href="#">پیراهن چهارخونه</a></li>
                             </ul>
                             <ul>
-                                <li><a class="dropdown-item" href="#">شلوار</a></li>
-                                <li><a class="dropdown-item" href="#">جین</a></li>
-                                <li><a class="dropdown-item" href="#">کتان</a></li>
-                                <li><a class="dropdown-item" href="#">پارچه‌ای</a></li>
-                                <li><a class="dropdown-item" href="#">چریکی</a></li>
+                                <li><a class="dropdown-item" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 256 256"><path fill="currentColor" d="m53.44 43.5l.68-5.5A16 16 0 0 1 70 24h116a16 16 0 0 1 15.88 14l.68 5.49a4 4 0 0 1-4 4.5H57.41a4 4 0 0 1-3.97-4.49M169 64a32.06 32.06 0 0 0 31 24h3.59a4 4 0 0 0 4-4.5l-2-16a4 4 0 0 0-4-3.5ZM52.41 88H56a32.06 32.06 0 0 0 31-24H54.41a4 4 0 0 0-4 3.5l-2 16a4 4 0 0 0 4 4.5m171.47 126l-13.32-106.5a4 4 0 0 0-4-3.5H200a48.07 48.07 0 0 1-47.32-40H136v39.73a8.18 8.18 0 0 1-7.47 8.25a8 8 0 0 1-8.53-8V64h-16.68A48.07 48.07 0 0 1 56 104h-6.59a4 4 0 0 0-4 3.5L32.12 214a16 16 0 0 0 6.71 15.09a16.56 16.56 0 0 0 9.56 2.91h40.3a16 16 0 0 0 15.51-12.06l23.8-92l23.79 91.94A16 16 0 0 0 167.31 232h40.3a16.54 16.54 0 0 0 9.56-2.89a16 16 0 0 0 6.71-15.11" /></svg><br /> شلوار</a></li>
+                                <li><a class="dropdown-item" href="#">شلوار جین</a></li>
+                                <li><a class="dropdown-item" href="#">شلوار کتان</a></li>
+                                <li><a class="dropdown-item" href="#">شلوار پارچه‌ای</a></li>
+                                <li><a class="dropdown-item" href="#">شلوار چریکی</a></li>
+                            </ul>
+                            <ul>
+                                <li><a class="dropdown-item" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 48 48"><defs><mask id="ipTClothesPantsSweat0"><g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"><path d="m24 19l9 19h9L38 4H10L6 38h9z" /><path fill="#555" d="m34 38l1 6h6v-6zm-21 6H7v-6h7z" /><path d="m24 4l4 7.5M24 4l-4 7.5" /></g></mask></defs><path fill="currentColor" d="M0 0h48v48H0z" mask="url(#ipTClothesPantsSweat0)" /></svg><br /> شلوارگرم</a></li>
+                                <li><a class="dropdown-item" href="#">اسلش اسپرت</a></li>
+                                <li><a class="dropdown-item" href="#">شلوار راحتی</a></li>
+                                <li><a class="dropdown-item" href="#"> چریکی</a></li>
+                                <li><a class="dropdown-item" href="#">دمپا کش</a></li>
+                            </ul>
+                            <ul>
+                                <li><a class="dropdown-item" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 512 512"><path fill="currentColor" d="M256 25c-6.6 0-16.1 3.77-26.1 10.69c-9.9 6.92-20.3 16.69-29.6 27.09c-8.4 9.52-15.9 19.56-21.5 28.35c5-2.29 10-4.34 15.1-6.17l.9-.41c20.2-8.78 40.6-13.25 61.1-13.25c20.5-.02 41 4.37 61.3 13.26l.8.35c5.1 1.84 10.2 3.91 15.2 6.22c-5.6-8.79-13.1-18.83-21.5-28.35c-9.3-10.4-19.7-20.17-29.6-27.09C272.1 28.77 262.6 25 256 25m0 67.23c-16.3 0-32.5 2.37-48.2 7.1c1 16.67 5.3 36.37 13 51.87c8.8 17.6 20.5 28.6 35.2 28.6c14.7 0 26.4-11 35.2-28.6c7.7-15.5 12-35.2 13-51.87c-15.7-4.73-31.9-7.1-48.2-7.1m-66 13.67c-7.1 3.1-14.1 6.7-20.8 10.9c1.3 19.1 10.4 34.5 24.8 45.7c5.7 4.5 12.3 8.2 19.5 11c-3.3-4.4-6.2-9.3-8.7-14.3c-8.4-16.6-13.2-35.7-14.8-53.3m132 0c-1.6 17.6-6.4 36.7-14.8 53.3c-2.5 5.1-5.5 10-8.8 14.5c7.4-2.9 14.1-6.6 19.9-11.2c14.2-11.2 23.2-26.6 24.5-45.7c-6.7-4.2-13.7-7.8-20.8-10.9m-131.4 76.2c-23.4 3.6-46.8 9.2-70.3 16.7L93.42 427l31.18 10.4l26.5-198.6l17.9 1.8L155.6 442c23.6 5.7 62.1 9 100.4 9c38.3 0 76.8-3.3 100.4-9L343 240.6l17.9-1.8l26.5 198.6l31.1-10.3l-26.8-228.3c-23.4-7.4-46.7-13.1-70-16.7c-4.1 2.6-8.4 4.8-12.9 6.8c-3.3 11.9-2.9 26 0 39.1c3.7 16.7 11.7 31.8 17.6 37.6l-12.8 12.8c-10.1-10.2-18.1-27.1-22.4-46.4c-2.6-11.7-3.8-24.4-2.2-36.7c-10.4 2.3-21.5 3.2-33 2.5c-11.5.7-22.6-.3-33-2.6c1.6 12.3.4 25-2.2 36.8c-4.3 19.3-12.3 36.2-22.4 46.4l-12.8-12.8c5.9-5.8 13.9-20.9 17.6-37.6c2.9-13.2 3.3-27.3 0-39.3c-4.4-1.9-8.6-4.1-12.6-6.6m10.2 154.4h110.4l17.6 77.5l-17.6 4l-14.4-63.5h-81.6L200.8 418l-17.6-4zM91.28 445.2l-2.23 18.9c.05-.3.69 1.7 3.98 4.3c3.4 2.6 8.67 5.3 13.77 7.1c5.1 1.6 10.1 2.2 12.4 2l2.9-22zm329.42 0l-30.8 10.3l2.9 22c2.3.2 7.3-.4 12.4-2c5.1-1.8 10.4-4.5 13.8-7.1c3.3-2.6 3.9-4.6 3.9-4.3zm-266.3 15l-1.3 19.2v.1c.5.5 2.1 1.7 4.5 2.9c4.8 2.4 13 4.8 23.1 6.8c20.1 3.8 47.7 5.8 75.3 5.8c27.6 0 55.2-2 75.3-5.8c10.1-2 18.3-4.4 23.1-6.8c2.4-1.2 4-2.4 4.5-2.9v-.1l-1.3-19.2c-26.5 6.1-63.9 8.8-101.6 8.8c-37.7 0-75.1-2.7-101.6-8.8" /></svg><br /> زمستانه</a></li>
+                                <li><a class="dropdown-item" href="#">کاپشن</a></li>
+                                <li><a class="dropdown-item" href="#">هودی</a></li>
+                                <li><a class="dropdown-item" href="#">سویشرت</a></li>
+                                <li><a class="dropdown-item" href="#">بافت</a></li>
+                            </ul>
+                            <ul>
+                                <li><a class="dropdown-item" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 24 24"><path fill="currentColor" d="M12 4a3.5 3.5 0 0 0-3.5 3.5h2A1.5 1.5 0 0 1 12 6a1.5 1.5 0 0 1 1.5 1.5A1.5 1.5 0 0 1 12 9c-.55 0-1 .45-1 1v1.75L2.4 18.2A1 1 0 0 0 3 20h18a1 1 0 0 0 .6-1.8L13 11.75v-.9a3.5 3.5 0 0 0 2.5-3.35A3.5 3.5 0 0 0 12 4m0 9.5l6 4.5H6Z" /></svg><br /> جانبی</a></li>
+                                <li><a class="dropdown-item" href="#">کلاه</a></li>
+                                <li><a class="dropdown-item" href="#">کراوات</a></li>
+                                <li><a class="dropdown-item" href="#">جوراب</a></li>
+                                <li><a class="dropdown-item" href="#">تسمه</a></li>
                             </ul>
                         </div>
                     </li>
                     <li class="nav-item mx-md-3 my-2">
                         <a class="nav-link" href="#">درباره ما</a>
                     </li>
+                    <li class="nav-item mx-md-3 my-2">
+                        <a class="nav-link" href="#">ارتباط با ما</a>
+                    </li>
+                    @if (isLoggedIn)
+                    {
+                        <li class="nav-item mx-md-3 my-2">
+                            @Html.ActionLink("خارج شدن", "SignOut", "Accounts", null, new { @class = "nav-link" })
+                        </li>
+                    }
+
                 </ul>
 
                 <div class="text-center">
-                    <a href="#"><svg class="mx-3 text-warning cart-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M17 18c-1.11 0-2 .89-2 2a2 2 0 0 0 2 2a2 2 0 0 0 2-2a2 2 0 0 0-2-2M1 2v2h2l3.6 7.59l-1.36 2.45c-.15.28-.24.61-.24.96a2 2 0 0 0 2 2h12v-2H7.42a.25.25 0 0 1-.25-.25c0-.05.01-.09.03-.12L8.1 13h7.45c.75 0 1.41-.42 1.75-1.03l3.58-6.47c.07-.16.12-.33.12-.5a1 1 0 0 0-1-1H5.21l-.94-2M7 18c-1.11 0-2 .89-2 2a2 2 0 0 0 2 2a2 2 0 0 0 2-2a2 2 0 0 0-2-2" /></svg></a>
-                    <button class="btn px-4 my-2 my-md-0 me-md-3 loginButton">ورود</button>
+                    <a href="@Url.Action("Index", "Cart")"><svg class="mx-3 text-warning cart-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M17 18c-1.11 0-2 .89-2 2a2 2 0 0 0 2 2a2 2 0 0 0 2-2a2 2 0 0 0-2-2M1 2v2h2l3.6 7.59l-1.36 2.45c-.15.28-.24.61-.24.96a2 2 0 0 0 2 2h12v-2H7.42a.25.25 0 0 1-.25-.25c0-.05.01-.09.03-.12L8.1 13h7.45c.75 0 1.41-.42 1.75-1.03l3.58-6.47c.07-.16.12-.33.12-.5a1 1 0 0 0-1-1H5.21l-.94-2M7 18c-1.11 0-2 .89-2 2a2 2 0 0 0 2 2a2 2 0 0 0 2-2a2 2 0 0 0-2-2" /></svg></a>
+                    @if (isLoggedIn)
+                    {
+
+                        <div class="dropdown">
+                            <img src="~/Images/logo1-removebg-preview.png" class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </div>
+
+                       
+                    }
+                    else
+                    {
+                        @Html.ActionLink("ورود", "Login", "Accounts", null, new { @class = "btn px-4 my-2 my-md-0 me-md-3 loginButton" })
+                    }
                 </div>
             </div>
         </div>

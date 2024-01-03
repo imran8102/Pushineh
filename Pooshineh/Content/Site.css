@@ -118,10 +118,6 @@ textarea {
     max-width: 280px;
 }
 
-.jumbotron {
-    margin-top: 20px !important;
-}
-
 .icon-hover:hover {
     border-color: #3b71ca !important;
     background-color: white !important;

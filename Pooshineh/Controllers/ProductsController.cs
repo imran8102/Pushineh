@@ -11,6 +11,7 @@ using System.Data.Entity;
 
 namespace Pooshineh.Controllers
 {
+    [Authorize]
     public class ProductsController : Controller
     {
         ClothingStoreEntities1 db = new ClothingStoreEntities1();
@@ -30,11 +31,11 @@ namespace Pooshineh.Controllers
         {
             string newImageName = "";
 
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                if(newImage != null)
+                if (newImage != null)
                 {
-                    if(newImage.ContentType != "image/jpeg" &&  newImage.ContentType != "image/png")
+                    if (newImage.ContentType != "image/jpeg" && newImage.ContentType != "image/png")
                     {
                         ModelState.AddModelError("ProductImagePath", "فرمت عکس باید به صورت jpg, jpeg یا png باشد.");
                         return View(newProduct);

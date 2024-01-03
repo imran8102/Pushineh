@@ -4,11 +4,17 @@
     ViewBag.Title = "Details";
     Pooshineh.Models.ClothingStoreEntities1 db = new Pooshineh.Models.ClothingStoreEntities1();
     var user = db.Table_User.Where(u => u.PhoneNumber == User.Identity.Name).SingleOrDefault();
+    bool isLoggedIn = true;
+    if (string.IsNullOrWhiteSpace(User.Identity.Name))
+    {
+        isLoggedIn = false;
+    }
+    bool isAdmin = isLoggedIn && user.RoleID == 1;
 }
 
 
 
-<div>
+<div class="container">
     <h4>Table_Products</h4>
     <hr />
     <dl class="dl-horizontal">
@@ -62,23 +68,28 @@
 
     </dl>
 </div>
-@if (user != null)
+@if (isLoggedIn)
 {
-
     if (user.RoleID == 1)
 
     {
-        @Html.ActionLink("Edit", "Edit", new { id = Model.ProductID }, new { @class = "btn btn-warning mx-2" })
-        @Html.ActionLink("Delete", "Delete", new { id = Model.ProductID }, new { @class = "btn btn-danger mx-2" })
+        @Html.ActionLink("ویرایش", "Edit", "Products", new { productId = Model.ProductID, quantity = 1 }, new { @class = "btn btn-warning mx-2" });
+        @Html.ActionLink("حذف", "Delete", new { id = Model.ProductID }, new { @class = "btn btn-danger mx-2" })
     }
+    else
+    {
+        if (Model.ProductQuantity <= 0)
+        {
+            <button class="btn btn-danger p-2" disabled>ناموجود</button>
+        }
+        else
+        {
+            @Html.ActionLink("افزودن به سبد خرید", "AddToCart", "Cart", new { productId = Model.ProductID, quantity = 1 }, new { @class = "btn btn-success mx-2" });
+        }
+    }
+
 }
-@if (Model.ProductQuantity <= 0)
-{
-    <button class="btn btn-danger p-2" disabled>ناموجود</button>
-}
-else
-{
-    @Html.ActionLink("Add to Cart", "AddToCart", "Cart", new { productId = Model.ProductID, quantity = 1 }, new { @class = "btn btn-success mx-2" });
-}
+
+
 
 
