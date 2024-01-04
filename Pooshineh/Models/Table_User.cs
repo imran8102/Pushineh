@@ -13,6 +13,7 @@ namespace Pooshineh.Models
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
+
     public partial class Table_User
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,37 +22,37 @@ namespace Pooshineh.Models
             this.Table_Cart = new HashSet<Table_Cart>();
         }
 
-        [Display(Name = "????")]
+        [Display(Name = "آیدی")]
         public int ID { get; set; }
-        [Display(Name = "???")]
+        [Display(Name = "نام")]
         public string Name { get; set; }
-        [Display(Name = "??? ????????")]
+        [Display(Name = "نام خانوادگی")]
         public string LastName { get; set; }
-        [Display(Name = "????? ??????")]
-        [RegularExpression("09[0-9]{9}", ErrorMessage = "{0} ??????? ???.")]
-        [Required(ErrorMessage = "???? {0} ?????? ???.")]
+        [Display(Name = "شماره موبایل")]
+        [RegularExpression("09[0-9]{9}", ErrorMessage = "{0} نامعتبر است.")]
+        [Required(ErrorMessage = "فیلد {0} اجباری است.")]
         public string PhoneNumber { get; set; }
-        [Display(Name = "????")]
+        [Display(Name = "آدرس")]
         public string Address { get; set; }
-        [Display(Name = "???? ?????")]
+        [Display(Name = "آدرس ایمیل")]
         [EmailAddress]
         public string EmailAddress { get; set; }
-        [Display(Name = "??? ??? ?????")]
+        [Display(Name = "شهر محل سکونت")]
         public string City { get; set; }
-        [Display(Name = "????? ??? ???")]
+        [Display(Name = "تاریخ ثیت نام")]
         public Nullable<System.DateTime> RegisterDate { get; set; }
-        [Display(Name = "????? ????")]
+        [Display(Name = "تاریخ تولد")]
         public Nullable<System.DateTime> BirthDate { get; set; }
-        [Display(Name = "??????? ????")]
+        [Display(Name = "تاریخچه ورود")]
         public Nullable<System.DateTime> LoginHistory { get; set; }
-        [Display(Name = "??? ????")]
+        [Display(Name = "رمز عبور")]
         [DataType(DataType.Password)]
-        [Required(ErrorMessage = "???? {0} ?????? ???.")]
-        [RegularExpression("^[a-zA-Z0-9]*$", ErrorMessage = "???? ?? ??????? ??? ??????? ??????? ????.")]
+        [Required(ErrorMessage = "فیلد {0} اجباری است.")]
+        [RegularExpression("^[a-zA-Z0-9]*$", ErrorMessage = "لطفا از کاراکتر های انگلیسی استفاده کنید.")]
         public string Password { get; set; }
-        [Display(Name = "?????")]
+        [Display(Name = "وضعیت")]
         public bool IsActive { get; set; }
-        [Display(Name = "???? ??? ??????")]
+        [Display(Name = "آیدی نقش کاربری")]
         public int RoleID { get; set; }
 
 

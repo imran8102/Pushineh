@@ -29,9 +29,22 @@
                     <li class="nav-item mx-md-3 my-2">
                         <a class="nav-link active" aria-current="page" href="@Url.Action("Index", "Home")">خانه</a>
                     </li>
-                    <li class="nav-item mx-md-3 my-2">
-                        @Html.ActionLink("محصولات", "Index", "Products", null, new { @class = "nav-link" })
-                    </li>
+                    @if (isLoggedIn)
+                    {
+                        if (user.RoleID != 1)
+                        {
+                            <li class="nav-item mx-md-3 my-2">
+                                @Html.ActionLink("محصولات", "Index", "Products", null, new { @class = "nav-link" })
+                            </li>
+                        }
+                    }
+                    else
+                    {
+                        <li class="nav-item mx-md-3 my-2">
+                            @Html.ActionLink("محصولات", "Index", "Products", null, new { @class = "nav-link" })
+                        </li>
+                    }
+
                     <li class="nav-item dropdown mx-md-3 my-2 mega-menu">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                            aria-expanded="false">
@@ -118,13 +131,15 @@
                                 @if (user.RoleID == 1)
                                 {
                                     <li><a class="dropdown-item nav-link" href="#">پنل ادمین</a></li>
+                                    <li>@Html.ActionLink("محصولات", "Index", "Products", null, new { @class = "dropdown-item nav-link" })</li>
+
                                 }
                                 else
                                 {
                                     <li><a class="dropdown-item nav-link" href="#">پنل کاربری</a></li>
                                     <li><a class="dropdown-item nav-link" href="#">پیگیری سفارش</a></li>
                                 }
-                            <li>@Html.ActionLink("خروج", "SignOut", "Accounts", null, new { @class = "nav-link dropdown-item" })</li>
+                                <li>@Html.ActionLink("خروج", "SignOut", "Accounts", null, new { @class = "nav-link dropdown-item" })</li>
                             </ul>
                         </div>
 

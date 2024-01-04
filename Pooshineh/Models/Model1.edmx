@@ -110,6 +110,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Table_CartItem_Table_Cart">
+          <End Role="Table_Cart" Type="Self.Table_Cart" Multiplicity="1" />
+          <End Role="Table_CartItem" Type="Self.Table_CartItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Cart">
+              <PropertyRef Name="CartID" />
+            </Principal>
+            <Dependent Role="Table_CartItem">
+              <PropertyRef Name="CartID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Table_CartItem_Table_Product">
           <End Role="Table_Products" Type="Self.Table_Products" Multiplicity="1" />
           <End Role="Table_CartItem" Type="Self.Table_CartItem" Multiplicity="*" />
@@ -184,6 +196,10 @@
             <End Role="Table_User" EntitySet="Table_User" />
             <End Role="Table_Cart" EntitySet="Table_Cart" />
           </AssociationSet>
+          <AssociationSet Name="FK_Table_CartItem_Table_Cart" Association="Self.FK_Table_CartItem_Table_Cart">
+            <End Role="Table_Cart" EntitySet="Table_Cart" />
+            <End Role="Table_CartItem" EntitySet="Table_CartItem" />
+          </AssociationSet>
           <AssociationSet Name="FK_Table_CartItem_Table_Product" Association="Self.FK_Table_CartItem_Table_Product">
             <End Role="Table_Products" EntitySet="Table_Products" />
             <End Role="Table_CartItem" EntitySet="Table_CartItem" />
@@ -217,21 +233,9 @@
           <Property Name="UserID" Type="Int32" Nullable="false" />
           <Property Name="TotalCost" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Table_User" Relationship="Self.FK_Table_Cart_Table_User" FromRole="Table_Cart" ToRole="Table_User" />
-          <NavigationProperty Name="Table_CartItem" Relationship="Self.FK_Table_CartItem_Table_Product" FromRole="Table_Cart" ToRole="Table_CartItem" />
           <Property Name="DiscountCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Table_Orders" Relationship="ClothingStoreModel.FK_Table_Orders_Table_Orders" FromRole="Table_Cart" ToRole="Table_Orders" />
-        </EntityType>
-        <EntityType Name="Table_CartItem">
-          <Key>
-            <PropertyRef Name="CartItemID" />
-          </Key>
-          <Property Name="CartItemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CartID" Type="Int32" Nullable="false" />
-          <Property Name="ProductID" Type="Int32" Nullable="false" />
-          <Property Name="Quantity" Type="Int32" Nullable="false" />
-          <Property Name="Price" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Table_Cart" Relationship="Self.FK_Table_CartItem_Table_Product" FromRole="Table_CartItem" ToRole="Table_Cart" />
-          <NavigationProperty Name="Table_Products" Relationship="ClothingStoreModel.FK_Table_CartItem_Table_Product1" FromRole="Table_CartItem" ToRole="Table_Products" />
+          <NavigationProperty Name="Table_CartItem" Relationship="ClothingStoreModel.FK_Table_CartItem_Table_Cart" FromRole="Table_Cart" ToRole="Table_CartItem" />
         </EntityType>
         <EntityType Name="Table_Categories">
           <Key>
@@ -281,18 +285,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Table_CartItem_Table_Product">
-          <End Role="Table_Cart" Type="Self.Table_Cart" Multiplicity="1" />
-          <End Role="Table_CartItem" Type="Self.Table_CartItem" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Table_Cart">
-              <PropertyRef Name="CartID" />
-            </Principal>
-            <Dependent Role="Table_CartItem">
-              <PropertyRef Name="CartID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Table_User_Table_Roles">
           <End Role="Table_Roles" Type="Self.Table_Roles" Multiplicity="1" />
           <End Role="Table_User" Type="Self.Table_User" Multiplicity="*" />
@@ -307,7 +299,6 @@
         </Association>
         <EntityContainer Name="ClothingStoreEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Table_Cart" EntityType="Self.Table_Cart" />
-          <EntitySet Name="Table_CartItem" EntityType="Self.Table_CartItem" />
           <EntitySet Name="Table_Categories" EntityType="Self.Table_Categories" />
           <EntitySet Name="Table_Roles" EntityType="Self.Table_Roles" />
           <EntitySet Name="Table_User" EntityType="Self.Table_User" />
@@ -315,24 +306,11 @@
             <End Role="Table_User" EntitySet="Table_User" />
             <End Role="Table_Cart" EntitySet="Table_Cart" />
           </AssociationSet>
-          <AssociationSet Name="FK_Table_CartItem_Table_Product" Association="Self.FK_Table_CartItem_Table_Product">
-            <End Role="Table_Cart" EntitySet="Table_Cart" />
-            <End Role="Table_CartItem" EntitySet="Table_CartItem" />
-          </AssociationSet>
           <AssociationSet Name="FK_Table_User_Table_Roles" Association="Self.FK_Table_User_Table_Roles">
             <End Role="Table_Roles" EntitySet="Table_Roles" />
             <End Role="Table_User" EntitySet="Table_User" />
           </AssociationSet>
           <EntitySet Name="Table_OrderDetails" EntityType="ClothingStoreModel.Table_OrderDetails" />
-          <EntitySet Name="Table_Products" EntityType="ClothingStoreModel.Table_Products" />
-          <AssociationSet Name="FK_Table_CartItem_Table_Product1" Association="ClothingStoreModel.FK_Table_CartItem_Table_Product1">
-            <End Role="Table_Products" EntitySet="Table_Products" />
-            <End Role="Table_CartItem" EntitySet="Table_CartItem" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Table_Products_Table_Categories" Association="ClothingStoreModel.FK_Table_Products_Table_Categories">
-            <End Role="Table_Categories" EntitySet="Table_Categories" />
-            <End Role="Table_Products" EntitySet="Table_Products" />
-          </AssociationSet>
           <EntitySet Name="Table_Discounts" EntityType="ClothingStoreModel.Table_Discounts" />
           <EntitySet Name="Table_Orders" EntityType="ClothingStoreModel.Table_Orders" />
           <AssociationSet Name="FK_Table_Orders_Table_Orders" Association="ClothingStoreModel.FK_Table_Orders_Table_Orders">
@@ -342,6 +320,20 @@
           <AssociationSet Name="FK_Table_OrderDetails_Table_Products" Association="ClothingStoreModel.FK_Table_OrderDetails_Table_Products">
             <End Role="Table_Orders" EntitySet="Table_Orders" />
             <End Role="Table_OrderDetails" EntitySet="Table_OrderDetails" />
+          </AssociationSet>
+          <EntitySet Name="Table_CartItem" EntityType="ClothingStoreModel.Table_CartItem" />
+          <EntitySet Name="Table_Products" EntityType="ClothingStoreModel.Table_Products" />
+          <AssociationSet Name="FK_Table_CartItem_Table_Product" Association="ClothingStoreModel.FK_Table_CartItem_Table_Product">
+            <End Role="Table_Products" EntitySet="Table_Products" />
+            <End Role="Table_CartItem" EntitySet="Table_CartItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_Products_Table_Categories" Association="ClothingStoreModel.FK_Table_Products_Table_Categories">
+            <End Role="Table_Categories" EntitySet="Table_Categories" />
+            <End Role="Table_Products" EntitySet="Table_Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_CartItem_Table_Cart" Association="ClothingStoreModel.FK_Table_CartItem_Table_Cart">
+            <End Role="Table_Cart" EntitySet="Table_Cart" />
+            <End Role="Table_CartItem" EntitySet="Table_CartItem" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Table_OrderDetails">
@@ -355,44 +347,6 @@
           <Property Name="Price" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Table_Orders" Relationship="ClothingStoreModel.FK_Table_OrderDetails_Table_Products" FromRole="Table_OrderDetails" ToRole="Table_Orders" />
         </EntityType>
-        <EntityType Name="Table_Products">
-          <Key>
-            <PropertyRef Name="ProductID" />
-          </Key>
-          <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CategoryID" Type="Int32" Nullable="false" />
-          <Property Name="ProductName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ProductDescription" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ProductImagePath" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ProductPrice" Type="Int32" Nullable="false" />
-          <Property Name="ProductQuantity" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Table_CartItem" Relationship="ClothingStoreModel.FK_Table_CartItem_Table_Product1" FromRole="Table_Products" ToRole="Table_CartItem" />
-          <NavigationProperty Name="Table_Categories" Relationship="ClothingStoreModel.FK_Table_Products_Table_Categories" FromRole="Table_Products" ToRole="Table_Categories" />
-        </EntityType>
-        <Association Name="FK_Table_CartItem_Table_Product1">
-          <End Type="ClothingStoreModel.Table_Products" Role="Table_Products" Multiplicity="1" />
-          <End Type="ClothingStoreModel.Table_CartItem" Role="Table_CartItem" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Table_Products">
-              <PropertyRef Name="ProductID" />
-            </Principal>
-            <Dependent Role="Table_CartItem">
-              <PropertyRef Name="ProductID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Table_Products_Table_Categories">
-          <End Type="ClothingStoreModel.Table_Categories" Role="Table_Categories" Multiplicity="1" />
-          <End Type="ClothingStoreModel.Table_Products" Role="Table_Products" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Table_Categories">
-              <PropertyRef Name="CategoryID" />
-            </Principal>
-            <Dependent Role="Table_Products">
-              <PropertyRef Name="CategoryID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Table_Discounts">
           <Key>
             <PropertyRef Name="DiscountID" />
@@ -439,6 +393,68 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Table_CartItem">
+          <Key>
+            <PropertyRef Name="CartItemID" />
+          </Key>
+          <Property Name="CartItemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CartID" Type="Int32" Nullable="false" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Table_Products" Relationship="ClothingStoreModel.FK_Table_CartItem_Table_Product" FromRole="Table_CartItem" ToRole="Table_Products" />
+          <NavigationProperty Name="Table_Cart" Relationship="ClothingStoreModel.FK_Table_CartItem_Table_Cart" FromRole="Table_CartItem" ToRole="Table_Cart" />
+        </EntityType>
+        <EntityType Name="Table_Products">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryID" Type="Int32" Nullable="false" />
+          <Property Name="ProductName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProductDescription" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProductImagePath" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProductPrice" Type="Int32" Nullable="false" />
+          <Property Name="ProductQuantity" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Table_CartItem" Relationship="ClothingStoreModel.FK_Table_CartItem_Table_Product" FromRole="Table_Products" ToRole="Table_CartItem" />
+          <NavigationProperty Name="Table_Categories" Relationship="ClothingStoreModel.FK_Table_Products_Table_Categories" FromRole="Table_Products" ToRole="Table_Categories" />
+        </EntityType>
+        <Association Name="FK_Table_CartItem_Table_Product">
+          <End Type="ClothingStoreModel.Table_Products" Role="Table_Products" Multiplicity="1" />
+          <End Type="ClothingStoreModel.Table_CartItem" Role="Table_CartItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Products">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="Table_CartItem">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_Products_Table_Categories">
+          <End Type="ClothingStoreModel.Table_Categories" Role="Table_Categories" Multiplicity="1" />
+          <End Type="ClothingStoreModel.Table_Products" Role="Table_Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Categories">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="Table_Products">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_CartItem_Table_Cart">
+          <End Type="ClothingStoreModel.Table_Cart" Role="Table_Cart" Multiplicity="1" />
+          <End Type="ClothingStoreModel.Table_CartItem" Role="Table_CartItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Cart">
+              <PropertyRef Name="CartID" />
+            </Principal>
+            <Dependent Role="Table_CartItem">
+              <PropertyRef Name="CartID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -452,17 +468,6 @@
                 <ScalarProperty Name="CartID" ColumnName="CartID" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="TotalCost" ColumnName="TotalCost" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Table_CartItem">
-            <EntityTypeMapping TypeName="ClothingStoreModel.Table_CartItem">
-              <MappingFragment StoreEntitySet="Table_CartItem">
-                <ScalarProperty Name="CartItemID" ColumnName="CartItemID" />
-                <ScalarProperty Name="CartID" ColumnName="CartID" />
-                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -512,19 +517,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Table_Products">
-            <EntityTypeMapping TypeName="ClothingStoreModel.Table_Products">
-              <MappingFragment StoreEntitySet="Table_Products">
-                <ScalarProperty Name="ProductQuantity" ColumnName="ProductQuantity" />
-                <ScalarProperty Name="ProductPrice" ColumnName="ProductPrice" />
-                <ScalarProperty Name="ProductImagePath" ColumnName="ProductImagePath" />
-                <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
-                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
-                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
-                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Table_Discounts">
             <EntityTypeMapping TypeName="ClothingStoreModel.Table_Discounts">
               <MappingFragment StoreEntitySet="Table_Discounts">
@@ -544,6 +536,30 @@
                 <ScalarProperty Name="CartID" ColumnName="CartID" />
                 <ScalarProperty Name="OrderName" ColumnName="OrderName" />
                 <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_CartItem">
+            <EntityTypeMapping TypeName="ClothingStoreModel.Table_CartItem">
+              <MappingFragment StoreEntitySet="Table_CartItem">
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="CartID" ColumnName="CartID" />
+                <ScalarProperty Name="CartItemID" ColumnName="CartItemID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_Products">
+            <EntityTypeMapping TypeName="ClothingStoreModel.Table_Products">
+              <MappingFragment StoreEntitySet="Table_Products">
+                <ScalarProperty Name="ProductQuantity" ColumnName="ProductQuantity" />
+                <ScalarProperty Name="ProductPrice" ColumnName="ProductPrice" />
+                <ScalarProperty Name="ProductImagePath" ColumnName="ProductImagePath" />
+                <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

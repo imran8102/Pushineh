@@ -13,6 +13,7 @@ namespace Pooshineh.Models
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
+
     public partial class Table_Roles
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,9 +22,9 @@ namespace Pooshineh.Models
             this.Table_User = new HashSet<Table_User>();
         }
 
-        [Display(Name = "???? ??? ??????")]
+        [Display(Name = "آیدی نقش کاربری")]
         public int RoleID { get; set; }
-        [Display(Name = "??? ??????")]
+        [Display(Name = "نقش کاربری")]
         public string RoleName { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

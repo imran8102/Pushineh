@@ -8,6 +8,7 @@ using System.Web.UI.WebControls;
 using System.IO;
 using System.Net;
 using System.Data.Entity;
+using System.Web.Helpers;
 
 namespace Pooshineh.Controllers
 {
@@ -66,13 +67,26 @@ namespace Pooshineh.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Table_Products product)
+        public ActionResult Edit(Table_Products product, HttpPostedFileBase newImage)
         {
+            string newImageName = "";
             if (ModelState.IsValid)
             {
+                if (newImage != null)
+                {
+                    if (newImage.ContentType != "image/jpeg" && newImage.ContentType != "image/png")
+                    {
+                        ModelState.AddModelError("ProductImagePath", "فرمت عکس باید به صورت jpg, jpeg یا png باشد.");
+                        return View(product);
+                    }
+                    newImageName = Guid.NewGuid().ToString().Replace("-", "") + Path.GetExtension(newImage.FileName);
+                    newImage.SaveAs(Server.MapPath("~/Images/Products/") + newImageName);
+                    product.ProductImagePath = newImageName;
+                }
                 db.Entry(product).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                TempData["ProductEditSuccess"] = "تغییرات با موفقیت انجام شد.";
+                return RedirectToAction("Edit");
             }
             return View(product);
         }
