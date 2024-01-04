@@ -15,7 +15,7 @@ namespace Pooshineh.Controllers
         ClothingStoreEntities1 db = new ClothingStoreEntities1();
         public ActionResult Index()
         {
-            var customers = db.Table_User.Where(t => t.RoleID == 0);
+            var customers = db.Table_User.Where(t => t.RoleID == 2);
             return View(customers);
         }
         [HttpGet]

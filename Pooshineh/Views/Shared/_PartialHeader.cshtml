@@ -32,12 +32,12 @@
                     <li class="nav-item mx-md-3 my-2">
                         @Html.ActionLink("محصولات", "Index", "Products", null, new { @class = "nav-link" })
                     </li>
-                    <li class="nav-item dropdown mx-md-3 my-2">
+                    <li class="nav-item dropdown mx-md-3 my-2 mega-menu">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                            aria-expanded="false">
                             دسته بندی
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <div class="dropdown-menu " aria-labelledby="navbarDropdown">
                             <ul>
                                 <li><a class="dropdown-item" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 32 32"><path fill="currentColor" d="M20.1 4.04a4.576 4.576 0 0 1-4.24 2.86a4.576 4.576 0 0 1-4.24-2.86L1.238 8.44l2.92 6.884l3.21-1.36V28h17.098V14.015l3.093 1.312l2.92-6.884z" /></svg><br /> تیشرت</a> </li>
 
@@ -88,12 +88,6 @@
                     <li class="nav-item mx-md-3 my-2">
                         <a class="nav-link" href="#">ارتباط با ما</a>
                     </li>
-                    @if (isLoggedIn)
-                    {
-                        <li class="nav-item mx-md-3 my-2">
-                            @Html.ActionLink("خارج شدن", "SignOut", "Accounts", null, new { @class = "nav-link" })
-                        </li>
-                    }
 
                 </ul>
 
@@ -101,22 +95,39 @@
                     <a href="@Url.Action("Index", "Cart")"><svg class="mx-3 text-warning cart-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M17 18c-1.11 0-2 .89-2 2a2 2 0 0 0 2 2a2 2 0 0 0 2-2a2 2 0 0 0-2-2M1 2v2h2l3.6 7.59l-1.36 2.45c-.15.28-.24.61-.24.96a2 2 0 0 0 2 2h12v-2H7.42a.25.25 0 0 1-.25-.25c0-.05.01-.09.03-.12L8.1 13h7.45c.75 0 1.41-.42 1.75-1.03l3.58-6.47c.07-.16.12-.33.12-.5a1 1 0 0 0-1-1H5.21l-.94-2M7 18c-1.11 0-2 .89-2 2a2 2 0 0 0 2 2a2 2 0 0 0 2-2a2 2 0 0 0-2-2" /></svg></a>
                     @if (isLoggedIn)
                     {
-                        if (user.RoleID == 1)
-                        {
-                            <a href="#">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="text-primary" width="24" height="24" viewBox="0 0 24 24">
-                                    <path fill="currentColor" d="M12 23C6.443 21.765 2 16.522 2 11V5l10-4l10 4v6c0 5.524-4.443 10.765-10 12M4 6v5a10.58 10.58 0 0 0 8 10a10.58 10.58 0 0 0 8-10V6l-8-3Z" />
-                                    <circle cx="12" cy="8.5" r="2.5" fill="currentColor" />
-                                    <path fill="currentColor" d="M7 15a5.782 5.782 0 0 0 5 3a5.782 5.782 0 0 0 5-3c-.025-1.896-3.342-3-5-3c-1.667 0-4.975 1.104-5 3" />
-                                </svg>
-                            </a>
-                        }
-                        else
-                        {
-                            <a href="#">
-                                <svg class="text-primary" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M7.39 16.539a8 8 0 1 1 9.221 0l2.083 4.76a.5.5 0 0 1-.459.701H5.765a.5.5 0 0 1-.459-.7zm6.735-.693l1.332-.941a6 6 0 1 0-6.913 0l1.331.941L8.058 20h7.884zM8.119 10.97l1.94-.485a2 2 0 0 0 3.882 0l1.94.485a4.002 4.002 0 0 1-7.762 0" /></svg>
-                            </a>
-                        }
+                        <div class="btn-group dropstart">
+                            <button class="bg-white border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                @if (user.RoleID == 1)
+                                {
+                                    <a href="#">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="text-primary" width="24" height="24" viewBox="0 0 24 24">
+                                            <path fill="currentColor" d="M12 23C6.443 21.765 2 16.522 2 11V5l10-4l10 4v6c0 5.524-4.443 10.765-10 12M4 6v5a10.58 10.58 0 0 0 8 10a10.58 10.58 0 0 0 8-10V6l-8-3Z" />
+                                            <circle cx="12" cy="8.5" r="2.5" fill="currentColor" />
+                                            <path fill="currentColor" d="M7 15a5.782 5.782 0 0 0 5 3a5.782 5.782 0 0 0 5-3c-.025-1.896-3.342-3-5-3c-1.667 0-4.975 1.104-5 3" />
+                                        </svg>
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a href="#">
+                                        <svg class="text-primary" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M7.39 16.539a8 8 0 1 1 9.221 0l2.083 4.76a.5.5 0 0 1-.459.701H5.765a.5.5 0 0 1-.459-.7zm6.735-.693l1.332-.941a6 6 0 1 0-6.913 0l1.331.941L8.058 20h7.884zM8.119 10.97l1.94-.485a2 2 0 0 0 3.882 0l1.94.485a4.002 4.002 0 0 1-7.762 0" /></svg>
+                                    </a>
+                                }
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-lg-start flex-column">
+                                @if (user.RoleID == 1)
+                                {
+                                    <li><a class="dropdown-item nav-link" href="#">پنل ادمین</a></li>
+                                }
+                                else
+                                {
+                                    <li><a class="dropdown-item nav-link" href="#">پنل کاربری</a></li>
+                                    <li><a class="dropdown-item nav-link" href="#">پیگیری سفارش</a></li>
+                                }
+                            <li>@Html.ActionLink("خروج", "SignOut", "Accounts", null, new { @class = "nav-link dropdown-item" })</li>
+                            </ul>
+                        </div>
+
                     }
                     else
                     {

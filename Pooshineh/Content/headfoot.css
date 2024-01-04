@@ -41,6 +41,10 @@ input[type="text"], input[type="tel"], input[type="email"], input[type="file"] {
 .nav-link:hover {
     color: #F8921F !important;
 }
+.nav-link:active {
+    background-color: #F8921F !important;
+    color:#fff !important;
+}
 
 .loginButton {
     color: #000;
@@ -55,10 +59,10 @@ input[type="text"], input[type="tel"], input[type="email"], input[type="file"] {
     color: #f8921f !important;
 }
 
-.dropdown-item:hover {
+/*.dropdown-item:hover {
     background-color: #F8921F;
     color: #fff !important;
-}
+}*/
 
 input[type="search"] {
     text-align: center;
@@ -66,12 +70,12 @@ input[type="search"] {
 
 /* mega dropdown Menu */
 
-.navbar-dark .navbar-nav a.nav-link {
+.mega-menu .navbar-dark .navbar-nav a.nav-link {
     color: #ffffff;
     font-size: 1.1em;
 }
 
-.dropdown-menu {
+.mega-menu .dropdown-menu {
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
     border: none;
     border-radius: 0;
@@ -88,7 +92,7 @@ input[type="search"] {
     }
 }
 
-.dropdown-menu ul {
+.mega-menu .dropdown-menu ul {
     list-style: none;
     padding: 0;
 }
@@ -99,12 +103,12 @@ input[type="search"] {
     padding: 0.5em 1em;
 }
 
-    .dropdown-menu li .dropdown-item:hover {
-        color: #f8921f !important;
-        background-color: #ffffff;
-    }
+.mega-menu .dropdown-menu li .dropdown-item:hover {
+    color: #f8921f !important;
+    background-color: #ffffff;
+}
 
-.dropdown-menu li:first-child a {
+.mega-menu .dropdown-menu li:first-child a {
     font-weight: bold;
     font-size: 1.2em;
     text-transform: uppercase;
