@@ -9,7 +9,7 @@
     {
         isLoggedIn = false;
     }
-    bool isAdmin = isLoggedIn && user.RoleID == 1;
+
 }
 
 
@@ -88,6 +88,17 @@
         }
     }
 
+}
+else
+{
+    if (Model.ProductQuantity <= 0)
+    {
+        <button class="btn btn-danger p-2" disabled>ناموجود</button>
+    }
+    else
+    {
+        @Html.ActionLink("افزودن به سبد خرید", "AddToCart", "Cart", new { productId = Model.ProductID, quantity = 1 }, new { @class = "btn btn-success mx-2" });
+    }
 }
 
 

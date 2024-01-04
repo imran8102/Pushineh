@@ -3,8 +3,6 @@
     font-family: Vazir !important;
     text-decoration: none !important;
     list-style-type: none !important;
-    /*margin: 0 !important;
-    padding: 0 !important;*/
     box-sizing: border-box !important;
 }
 
@@ -20,6 +18,7 @@ input[type="text"], input[type="tel"], input[type="email"], input[type="file"] {
     display: inline-block;
     width: 30%;
 }
+
 /* navbar */
 
 .avatar {

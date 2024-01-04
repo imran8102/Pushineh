@@ -11,7 +11,7 @@ using System.Data.Entity;
 
 namespace Pooshineh.Controllers
 {
-    [Authorize]
+    
     public class ProductsController : Controller
     {
         ClothingStoreEntities1 db = new ClothingStoreEntities1();
