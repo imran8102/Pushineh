@@ -7,7 +7,7 @@
     SelectList categoryList = new SelectList(categories, "CategoryID", "CategoryName", Model.CategoryID);
 }
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit","Products",FormMethod.Post , new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()<div class="form-horizontal">
     <div class="text-center bg-info py-5 fw-bolder rounded-1 text-white mt-5"><h3>ویرایش محصول</h3></div>
@@ -46,14 +46,6 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.ProductImagePath, htmlAttributes: new { @class = "control-label col-md-2 mt-3 text-info" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.ProductImagePath, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.ProductImagePath, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
         @Html.LabelFor(model => model.ProductPrice, htmlAttributes: new { @class = "control-label col-md-2 mt-3 text-info" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.ProductPrice, new { htmlAttributes = new { @class = "form-control" } })
@@ -66,6 +58,23 @@
         <div class="col-md-10">
             @Html.EditorFor(model => model.ProductQuantity, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.ProductQuantity, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="col">
+            <div class="form-label">
+                <label for="imageUpload" class="control-label col-md-2 mt-3 text-info">تغییر تصویر محصول </label>
+            </div>
+            <input type="file" name="imageUpload" id="imageUpload" class="form-control" />
+            @Html.ValidationMessageFor(model => model.ProductImagePath, "", new { @class = "text-danger" })
+        </div>
+        <div class="col">
+            <div class="form-label">
+                @Html.LabelFor(model => model.ProductImagePath, htmlAttributes: new { @class = "control-label col-md-2 mt-3 text-info" })
+            </div>
+            <img src="~/Images/Products/@Model.ProductImagePath" style="width:120px;height:120px;" alt="@Model.ProductName" />
+            @Html.ValidationMessageFor(model => model.ProductImagePath, "", new { @class = "text-danger" })
         </div>
     </div>
 
