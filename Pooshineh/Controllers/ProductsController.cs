@@ -91,25 +91,20 @@ namespace Pooshineh.Controllers
             return View(product);
         }
         [HttpGet]
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var product = db.Table_Products.Find(id);
-            if (product == null)
-            {
-                return HttpNotFound();
-            }
-            return View(product);
-        }
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        
+        
+        public ActionResult Delete(int id)
         {
             var product = db.Table_Products.Find(id);
             db.Table_Products.Remove(product);
+            var productsInCart = db.Table_CartItem.Where(ci => ci.ProductID == id);
+            
+            foreach(var productInCart in productsInCart)
+            {
+                var cart = db.Table_Cart.Where(c => c.CartID == productInCart.CartID).FirstOrDefault();
+                cart.TotalCost -= productInCart.Quantity * productInCart.Price;
+                db.Table_CartItem.Remove(productInCart);
+            }
             db.SaveChanges();
             return RedirectToAction("Index");
         }

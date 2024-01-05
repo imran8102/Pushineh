@@ -276,7 +276,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Products\CreateProduct.cshtml" />
     <Content Include="Views\Products\Index.cshtml" />
-    <Content Include="Views\Products\Delete.cshtml" />
     <Content Include="Views\Accounts\Index.cshtml" />
     <Content Include="Views\Accounts\Edit.cshtml" />
     <Content Include="Views\Accounts\Delete.cshtml" />

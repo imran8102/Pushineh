@@ -33,7 +33,7 @@ namespace Pooshineh.Models
         [Required(ErrorMessage = "فیلد {0} اجباری است.")]
         public string ProductDescription { get; set; }
         [Display(Name = "تصویر محصول")]
-        [Required(ErrorMessage = "فیلد {0} اجباری است.")]
+        //[Required(ErrorMessage = "فیلد {0} اجباری است.")]
         public string ProductImagePath { get; set; }
         [Display(Name = "قیمت محصول")]
         [Required(ErrorMessage = "فیلد {0} اجباری است.")]
