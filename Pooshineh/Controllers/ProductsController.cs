@@ -69,7 +69,7 @@ namespace Pooshineh.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Table_Products product, HttpPostedFileBase newImage)
         {
-            string newImageName = "";
+            string newImageName;
             if (ModelState.IsValid)
             {
                 if (newImage != null)
@@ -88,6 +88,7 @@ namespace Pooshineh.Controllers
                 TempData["ProductEditSuccess"] = "تغییرات با موفقیت انجام شد.";
                 return RedirectToAction("Edit");
             }
+            TempData["ProductEditFailed"] = "لطفا فرم را به درستی پر کنید.";
             return View(product);
         }
         [HttpGet]

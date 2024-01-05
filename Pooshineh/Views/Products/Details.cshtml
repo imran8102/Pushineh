@@ -11,6 +11,7 @@
     }
 
 }
+<div class="text-center bg-info py-5 fw-bolder rounded-1 text-white my-5 "><h3>مشخصات محصول</h3></div>
 
 <!-- content -->
 <div class="container py-5">
@@ -114,7 +115,7 @@
                     if (user.RoleID == 1)
 
                     {
-                        <a href="#myModal" class="btn trigger-btn  btn-danger mx-2 w-25" data-bs-toggle="modal">حذف</a>
+                        <a href="#myModal" class="btn trigger-btn  btn-danger mx-2 " data-bs-toggle="modal">حذف</a>
                         <!-- Modal HTML -->
                         <div id="myModal" class="modal fade">
                             <div class="modal-dialog modal-confirm">
@@ -138,7 +139,7 @@
                                 </div>
                             </div>
                         </div>
-                        @Html.ActionLink("ویرایش", "Edit", "Products", new { id = Model.ProductID }, new { @class = "btn btn-warning mx-2 w-25" });
+                        @Html.ActionLink("ویرایش", "Edit", "Products", new { id = Model.ProductID }, new { @class = "btn btn-warning mx-2" });
                     }
                     else
                     {
