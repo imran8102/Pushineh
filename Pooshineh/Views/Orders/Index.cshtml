@@ -40,7 +40,14 @@
     <tr>
         <td></td>
         <td></td>
-        <th>قیمت کل: <span class="text-danger">@finalyCost</span> <small>تومان</small></th>
+        @if (cart.TotalCost > 0)
+        {
+            <th>قیمت کل: <span class="text-danger">@finalyCost</span> <small>تومان</small></th>
+        }
+        else
+        {
+            <th></th>
+        }
     </tr>
 
 </table>
@@ -81,11 +88,12 @@
         }
     </div>
 
-    <div class="col">
-        @using (Html.BeginForm("ConfirmOrder", "Orders", FormMethod.Post, new { enctype = "multipart/form-data" }))
-        {
+
+    @using (Html.BeginForm("ConfirmOrder", "Orders", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="col">
             <label for="address" class="form-label">آدرس پستی</label>
-            if (user.Address == null)
+            @if (user.Address == null)
             {
                 <div class="form-group my-3 my-lg-0">
                     <input type="text"
@@ -99,12 +107,14 @@
                            class="form-control my-3 my-lg-0" placeholder="@user.Address" name="address" id="address" style="width: 400px; height: 120px; max-width: 390px; max-height:150px;">
                 </div>
             }
-        }
-    </div>
-
-    <div class="form-group text-center text-lg-start mt-4 mt-lg-2">
+        </div>
+        <div class="form-group text-center text-lg-start mt-4 mt-lg-3">
             <input type="submit" value="ثبت نهایی سفارش" class="btn btn-warning px-5 py-3 text-white fw-bold" />
-    </div>
+        </div>
+
+    }
+
+
 </div>
 
 

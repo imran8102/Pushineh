@@ -40,8 +40,10 @@ namespace Pooshineh.Models
         [Display(Name = "شهر محل سکونت")]
         public string City { get; set; }
         [Display(Name = "تاریخ ثیت نام")]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         public Nullable<System.DateTime> RegisterDate { get; set; }
         [Display(Name = "تاریخ تولد")]
+        [DisplayFormat(DataFormatString = "{0:dddd, dd MMMM yyyy}")]
         public Nullable<System.DateTime> BirthDate { get; set; }
         [Display(Name = "تاریخچه ورود")]
         public Nullable<System.DateTime> LoginHistory { get; set; }

@@ -278,7 +278,6 @@
     <Content Include="Views\Products\Index.cshtml" />
     <Content Include="Views\Accounts\Index.cshtml" />
     <Content Include="Views\Accounts\Edit.cshtml" />
-    <Content Include="Views\Accounts\Delete.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Products\Details.cshtml" />
     <Content Include="Views\Cart\AddToCart.cshtml" />
