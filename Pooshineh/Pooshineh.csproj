@@ -120,6 +120,7 @@
     <Content Include="Images\967678.jpg" />
     <Content Include="Images\bg6.jpg" />
     <Content Include="Images\galaxyVector.svg" />
+    <Content Include="Images\logo-removebg-preview.png" />
     <Content Include="Images\logo1-removebg-preview.png" />
     <Content Include="Images\t1.jpg" />
     <Content Include="Images\t2.jpg" />
@@ -293,6 +294,8 @@
     <Content Include="Views\Shared\_PartialHeader.cshtml" />
     <Content Include="Views\Shared\_PartialFooter.cshtml" />
     <Content Include="Views\Products\Edit.cshtml" />
+    <Content Include="Views\Shared\_ModalDeleteUser.cshtml" />
+    <Content Include="Views\Shared\_ModalDeleteProduct.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

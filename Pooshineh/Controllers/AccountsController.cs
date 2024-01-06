@@ -13,6 +13,7 @@ namespace Pooshineh.Controllers
     public class AccountsController : Controller
     {
         ClothingStoreEntities1 db = new ClothingStoreEntities1();
+        [Authorize]
         public ActionResult Index()
         {
             var customers = db.Table_User.Where(t => t.RoleID == 2);
@@ -27,11 +28,11 @@ namespace Pooshineh.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginViewModel credentials)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 bool userExists = db.Table_User.Any(t => t.PhoneNumber == credentials.PhoneNumber && t.Password == credentials.Password);
                 var customer = db.Table_User.FirstOrDefault(t => t.PhoneNumber == credentials.PhoneNumber);
-                if(userExists)
+                if (userExists)
                 {
                     FormsAuthentication.SetAuthCookie(customer.PhoneNumber, false);
                     return RedirectToAction("Index", "Home");
@@ -48,16 +49,16 @@ namespace Pooshineh.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult SignUp([Bind(Include = "PhoneNumber, Password")]Table_User newCustomer, string passwordRepeat)
+        public ActionResult SignUp([Bind(Include = "PhoneNumber, Password")] Table_User newCustomer, string passwordRepeat)
         {
             var existingUser = db.Table_User.Where(u => u.PhoneNumber == newCustomer.PhoneNumber).FirstOrDefault();
-            if(existingUser != null)
+            if (existingUser != null)
             {
-                ModelState.AddModelError("PhoneNumber","کاربری با این شماره ثبت نام کرده است.");
+                ModelState.AddModelError("PhoneNumber", "کاربری با این شماره ثبت نام کرده است.");
                 return View();
             }
-            
-            if(ModelState.IsValid)
+
+            if (ModelState.IsValid)
             {
                 if (newCustomer.Password == passwordRepeat)
                 {
@@ -79,9 +80,10 @@ namespace Pooshineh.Controllers
         public ActionResult SignOut()
         {
             FormsAuthentication.SignOut();
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Login");
         }
         [HttpGet]
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -103,32 +105,52 @@ namespace Pooshineh.Controllers
             {
                 db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                TempData["UserEditSuccess"] = "تغییرات با موفقیت انجام شد.";
+                return View(user);
             }
+            TempData["UserEditFailed"] = "تغییرات با مشکل مواجه شد.";
             return View(user);
         }
         [HttpGet]
+        [Authorize]
         public ActionResult Delete(int? id)
+        {
+            var customer = db.Table_User.Find(id);
+            var usersProductsInCart = db.Table_CartItem.Where(ci => ci.Table_Cart.UserID == id);
+
+            if (usersProductsInCart.Any())
+            {
+                db.Table_CartItem.RemoveRange(usersProductsInCart);
+            }
+            var usersCart = db.Table_Cart.Where(c => c.UserID == id).FirstOrDefault();
+            if (usersCart != null)
+            {
+                var usersOrders = db.Table_Orders.Where(o => o.CartID == usersCart.CartID);
+                foreach (var order in usersOrders)
+                {
+                    var usersOrderDetails = db.Table_OrderDetails.Where(od => od.OrderID == order.OrderID);
+                    if (usersOrderDetails.Any())
+                        db.Table_OrderDetails.RemoveRange(usersOrderDetails);
+                }
+                db.Table_Orders.RemoveRange(usersOrders);
+                db.Table_Cart.Remove(usersCart);
+            }
+            db.Table_User.Remove(customer);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var customer= db.Table_User.Find(id);
-            if (customer == null)
+            var user = db.Table_User.Find(id);
+            if (user == null)
             {
                 return HttpNotFound();
             }
-            return View(customer);
-        }
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            var customer = db.Table_User.Find(id);
-            db.Table_User.Remove(customer);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            return View(user);
         }
     }
 }

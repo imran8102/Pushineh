@@ -47,7 +47,7 @@ namespace Pooshineh.Controllers
                 newProduct.ProductImagePath = newImageName;
                 db.Table_Products.Add(newProduct);
                 db.SaveChanges();
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Products");
             }
             return View(newProduct);
         }
@@ -91,9 +91,8 @@ namespace Pooshineh.Controllers
             TempData["ProductEditFailed"] = "لطفا فرم را به درستی پر کنید.";
             return View(product);
         }
+
         [HttpGet]
-        
-        
         public ActionResult Delete(int id)
         {
             var product = db.Table_Products.Find(id);
