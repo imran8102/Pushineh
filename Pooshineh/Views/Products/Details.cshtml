@@ -105,8 +105,25 @@
                     </div>
                     <!-- col.// -->
                     <div class="col-md-4 col-6 mb-3">
-                        <label class="mb-2 d-block">تعداد</label>
-                        <input type="number" name="quantity" value="@Model.ProductQuantity" min="1" disabled max="30" class="form-control" />
+                        @if (isLoggedIn)
+                        {
+                            if (user.RoleID == 1)
+                            {
+                                <label class="mb-2 d-block">موجودی</label>
+                                <input type="number" name="quantity" value="@Model.ProductQuantity" min="1" disabled max="60" class="form-control" />
+                            }
+                            else
+                            {
+                                <label class="mb-2 d-block">تعداد</label>
+                                <input type="number" name="quantity" min="1" max="30" class="form-control" />
+                            }
+                        }
+                        else
+                        {
+                            <label class="mb-2 d-block">تعداد</label>
+                            <input type="number" name="quantity" min="1" max="30" class="form-control" />
+                        }
+
                     </div>
                 </div>
 

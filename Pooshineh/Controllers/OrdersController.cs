@@ -121,6 +121,7 @@ namespace Pooshineh.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)

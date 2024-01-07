@@ -115,6 +115,7 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\headfoot.css" />
     <Content Include="Content\log.css" />
+    <Content Include="Content\order_details.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\userProfile.css" />
     <Content Include="Global.asax" />
@@ -298,6 +299,7 @@
     <Content Include="Views\Shared\_ModalDeleteUser.cshtml" />
     <Content Include="Views\Shared\_ModalDeleteProduct.cshtml" />
     <Content Include="Views\Accounts\Details.cshtml" />
+    <Content Include="Views\Shared\_SuccessOrder.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

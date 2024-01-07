@@ -1,0 +1,123 @@
+﻿/*---------- order details -----------*/
+.dorder .container-fluid {
+    margin-top: 200px;
+}
+
+.dorder p {
+    font-size: 14px;
+    margin-bottom: 7px;
+}
+
+.dorder .small {
+    letter-spacing: 0.5px !important;
+}
+
+.dorder .card-1 {
+    box-shadow: 2px 2px 10px 0px #ffc107;
+}
+
+.dorder hr {
+    background-color: rgba(248, 248, 248, 0.667);
+}
+
+
+.dorder .bold {
+    font-weight: 500;
+}
+
+.dorder .change-color {
+    color: #AB47BC !important;
+}
+
+.dorder .card-2 {
+    box-shadow: 1px 1px 3px 0px rgb(112, 115, 139);
+}
+
+.dorder .active-svg {
+    font-size: 8px;
+    color: #AB47BC;
+}
+
+.dorder .circle-svg {
+    font-size: 8px;
+    color: #aaa;
+}
+
+.dorder .rounded {
+    border-radius: 2.25rem !important;
+}
+
+
+.dorder .progress-bar {
+    background-color: #AB47BC !important;
+}
+
+
+.dorder .progress {
+    height: 5px !important;
+    margin-bottom: 0;
+}
+
+.dorder .invoice {
+    position: relative;
+    top: -70px;
+}
+
+.dorder .Glasses {
+    position: relative;
+    top: -12px !important;
+}
+
+.dorder .card-footer {
+    background-color: #ffc107;
+    color: #fff;
+}
+
+.dorder h2 {
+    color: rgb(78, 0, 92);
+    letter-spacing: 2px !important;
+}
+
+.dorder .display-3 {
+    font-weight: 500 !important;
+}
+
+@media(max-width: 479px) {
+    .dorder .invoice
+
+{
+    position: relative;
+    top: 7px;
+}
+
+.dorder .border-line {
+    border-right: 0px solid rgb(226, 206, 226) !important;
+}
+
+}
+
+@media(max-width: 700px) {
+    .dorder h2
+
+{
+    color: rgb(78, 0, 92);
+    font-size: 17px;
+}
+
+.dorder .display-3 {
+    font-size: 28px;
+    font-weight: 500 !important;
+}
+
+}
+
+.dorder .card-footer small {
+    letter-spacing: 7px !important;
+    font-size: 12px;
+}
+
+.dorder .border-line {
+    border-right: 1px solid rgb(226, 206, 226)
+}
+
+/*---------- order details -----------*/

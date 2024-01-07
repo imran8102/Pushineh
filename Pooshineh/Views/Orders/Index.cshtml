@@ -33,12 +33,12 @@
                 @Html.DisplayFor(modelItem => item.Quantity)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Price)
+                @Html.DisplayFor(modelItem => item.Price) <small>تومان</small>
             </td>
         </tr>
     }
-    <tr>
-        <td></td>
+    <tr class="table-group-divider">
+        <td class="text-warning fw-bold">هزینه پست <span>@trackingCost <small>تومان</small></span> </td>
         <td></td>
         @if (cart.TotalCost > 0)
         {
