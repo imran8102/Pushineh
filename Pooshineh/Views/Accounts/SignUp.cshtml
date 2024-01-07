@@ -14,13 +14,13 @@
 </head>
 
 <body dir="rtl">
-    <div class="wrapper">
+    <div class="wrapper ">
 
-        @using (Html.BeginForm())
+        @using (Html.BeginForm("Login", "Accounts", FormMethod.Post, new { @style = "width: 450px;" }))
         {
             @Html.AntiForgeryToken()
 
-            <div class="login-box">
+            <div class="login-box w-auto">
                 <div class="login-header">
                     <Span>ثبت نام</Span>
                 </div>
