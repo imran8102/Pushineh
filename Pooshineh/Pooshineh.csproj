@@ -116,6 +116,7 @@
     <Content Include="Content\headfoot.css" />
     <Content Include="Content\log.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\userProfile.css" />
     <Content Include="Global.asax" />
     <Content Include="Images\967678.jpg" />
     <Content Include="Images\bg6.jpg" />
@@ -296,6 +297,7 @@
     <Content Include="Views\Products\Edit.cshtml" />
     <Content Include="Views\Shared\_ModalDeleteUser.cshtml" />
     <Content Include="Views\Shared\_ModalDeleteProduct.cshtml" />
+    <Content Include="Views\Accounts\Details.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

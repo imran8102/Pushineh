@@ -9,7 +9,7 @@
 {
     <br />
     <p>
-        @Html.ActionLink("درج کد تخفیف", "AddDiscountCode", "Discounts", null, new { @class = "btn btn-info" })
+        @Html.ActionLink("درج کد تخفیف", "AddDiscountCode", "Discounts", null, new { @class = "btn btn-success mt-3" })
     </p>
 
     if (TempData["DiscountAddSuccess"] != null)
@@ -25,8 +25,9 @@
         </div>
     }
 
-    <table class="table">
-        <tr>
+    <table class="table text-center align-items-center">
+        
+        <tr class="table-dark">
             <th>
                 @Html.DisplayNameFor(model => model.DiscountCode)
             </th>
@@ -35,22 +36,23 @@
             </th>
             <th></th>
         </tr>
+        <tbody class="table-group-divider">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DiscountCode)
+                    </td>
+                    <td>
+                        %@Html.DisplayFor(modelItem => item.TotalDiscount)
+                    </td>
+                    <td>
+                        @Html.ActionLink("حذف", "Delete", "Discounts", new { id = item.DiscountID }, new { @class = "btn btn-danger" })
+                    </td>
 
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DiscountCode)
-                </td>
-                <td>
-                    %@Html.DisplayFor(modelItem => item.TotalDiscount)
-                </td>
-                <td>
-                    @Html.ActionLink("حذف", "Delete", "Discounts", new { id = item.DiscountID }, new { @class = "btn btn-danger" })
-                </td>
-
-            </tr>
-        }
+                </tr>
+            }
+        </tbody>
 
     </table>
 }

@@ -112,6 +112,7 @@
 
                 @if (isLoggedIn)
                 {
+                    @Html.ActionLink("بازگشت", "Index", "Products", null, new { @class = "btn btn-primary mx-2 rounded-1" });
                     if (user.RoleID == 1)
 
                     {
@@ -119,7 +120,7 @@
                         <!-- Modal HTML -->
                         //---------- delete ------------
                         @Html.Partial("_ModalDeleteProduct", Model)
-                        
+
                         //---------- delete ------------
                         @Html.ActionLink("ویرایش", "Edit", "Products", new { id = Model.ProductID }, new { @class = "btn btn-warning mx-2" });
                     }
