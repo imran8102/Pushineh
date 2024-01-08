@@ -120,13 +120,56 @@
     <Content Include="Content\userProfile.css" />
     <Content Include="Global.asax" />
     <Content Include="Images\967678.jpg" />
+    <Content Include="Images\banner1.jpg" />
+    <Content Include="Images\banner2.jpg" />
+    <Content Include="Images\banner3.jpg" />
     <Content Include="Images\bg6.jpg" />
     <Content Include="Images\galaxyVector.svg" />
+    <Content Include="Images\h1.jpg" />
+    <Content Include="Images\h2.jpg" />
+    <Content Include="Images\h3.jpg" />
+    <Content Include="Images\h4.jpg" />
+    <Content Include="Images\h5.jpg" />
+    <Content Include="Images\h6.jpg" />
+    <Content Include="Images\h7.jpg" />
+    <Content Include="Images\jacket1.jpg" />
+    <Content Include="Images\jacket2.jpg" />
+    <Content Include="Images\jacket3.jpg" />
+    <Content Include="Images\jacket4.jpg" />
+    <Content Include="Images\jacket5.jpg" />
     <Content Include="Images\logo-removebg-preview.png" />
     <Content Include="Images\logo1-removebg-preview.png" />
+    <Content Include="Images\pants1.jpg" />
+    <Content Include="Images\pants10.jpg" />
+    <Content Include="Images\pants11.jpg" />
+    <Content Include="Images\pants12.jpg" />
+    <Content Include="Images\pants2.jpg" />
+    <Content Include="Images\pants3.jpg" />
+    <Content Include="Images\pants4.jpg" />
+    <Content Include="Images\pants5.jpg" />
+    <Content Include="Images\pants6.jpg" />
+    <Content Include="Images\pants7.jpg" />
+    <Content Include="Images\pants8.jpg" />
+    <Content Include="Images\pants9.jpg" />
+    <Content Include="Images\set1.jpg" />
+    <Content Include="Images\set2.jpg" />
+    <Content Include="Images\set3.jpg" />
+    <Content Include="Images\set4.jpg" />
+    <Content Include="Images\set5.jpg" />
+    <Content Include="Images\set6.jpg" />
+    <Content Include="Images\set7.jpg" />
+    <Content Include="Images\shirt1.jpg" />
+    <Content Include="Images\shirt2.jpg" />
+    <Content Include="Images\shirt3.jpg" />
+    <Content Include="Images\shirt4.jpg" />
+    <Content Include="Images\shirt5.jpg" />
+    <Content Include="Images\summerBanner.jpeg" />
+    <Content Include="Images\summerBanner2.jpg" />
     <Content Include="Images\t1.jpg" />
     <Content Include="Images\t2.jpg" />
     <Content Include="Images\t3.jpg" />
+    <Content Include="Images\tshirt1.jpg" />
+    <Content Include="Images\tshirt2.jpg" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
@@ -150,6 +193,7 @@
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <Content Include="Images\summerBanner3.webp" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -300,6 +344,7 @@
     <Content Include="Views\Shared\_ModalDeleteProduct.cshtml" />
     <Content Include="Views\Accounts\Details.cshtml" />
     <Content Include="Views\Shared\_SuccessOrder.cshtml" />
+    <Content Include="Views\Shared\_PartialBanner.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -81,6 +81,8 @@ body {
     border-radius: 30px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
 }
+    
+}
 
 .card-body {
     padding: 25px;
@@ -262,16 +264,16 @@ textarea {
 
 /* homepage */
 
-@media screen and (orientation: landscape) {
-    .carousel img {
-        height: 100vh;
-    }
+.section1 img{
+    max-height:400px !important;
+    width:auto;
 }
 
 /* homepage */
 
 /* ------------------- */
 
+/*----------- login signup ----------------*/
 .input-box {
     position: relative;
     display: flex;
@@ -316,3 +318,7 @@ textarea {
     left: 25px;
     font-size: 20px;
 }
+/*----------- login signup ----------------*/
+
+
+

@@ -4,9 +4,9 @@
     ViewBag.Title = "AddDiscountCode";
 }
 
-<h2>AddDiscountCode</h2>
+<div class="text-center bg-info py-5 fw-bolder rounded-1 text-white my-5"><h3>افزودن کد تخفیف</h3></div>
 
-
+ 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -33,10 +33,10 @@
             </div>
         </div>
         <div class="row mt-5">
-                @Html.ActionLink("بازگشت", "Index", "Discounts", null, new { @class = "btn btn-primary mx-2 rounded-1" }) |
-                <input type="submit" style="width:120px !important;" value="درج کردن" class="btn btn-success mx-2" />
+            @Html.ActionLink("بازگشت", "Index", "Discounts", null, new { @class = "btn btn-primary mx-2 rounded-1" }) |
+            <input type="submit" style="width:120px !important;" value="درج کردن" class="btn btn-success mx-2" />
         </div>
-        
+
     </div>
 }
 
