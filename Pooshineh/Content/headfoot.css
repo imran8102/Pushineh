@@ -150,11 +150,11 @@ body {
     padding: 20px;
 }
 
-    .card:hover {
+   section .card:hover {
         border-color: #f8921f;
         box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
     }
-.card {
+section .card {
     border-radius: 30px;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px!important;
     transition: box-shadow 0.5s;

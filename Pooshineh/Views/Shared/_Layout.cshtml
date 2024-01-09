@@ -1,13 +1,4 @@
-﻿@{
-    bool isLoggedIn = true;
-    if (string.IsNullOrWhiteSpace(User.Identity.Name))
-    {
-        isLoggedIn = false;
-    }
-    Pooshineh.Models.ClothingStoreEntities1 db = new Pooshineh.Models.ClothingStoreEntities1();
-    var user = db.Table_User.Where(u => u.PhoneNumber == User.Identity.Name).FirstOrDefault();
-
-}
+﻿
 
 <!DOCTYPE html>
 <html>
@@ -28,6 +19,5 @@
     @Html.Partial("_PartialFooter")
 
 
-    @*@RenderSection("scripts", required: false)*@
 </body>
 </html>

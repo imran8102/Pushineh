@@ -151,6 +151,7 @@
     <Content Include="Images\pants7.jpg" />
     <Content Include="Images\pants8.jpg" />
     <Content Include="Images\pants9.jpg" />
+    <Content Include="Images\pngtree-new-banner-in-winter-image_910805.jpg" />
     <Content Include="Images\set1.jpg" />
     <Content Include="Images\set2.jpg" />
     <Content Include="Images\set3.jpg" />
@@ -194,6 +195,7 @@
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
     <Content Include="Images\summerBanner3.webp" />
+    <Content Include="Images\winterBanner.webp" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -345,6 +347,7 @@
     <Content Include="Views\Accounts\Details.cshtml" />
     <Content Include="Views\Shared\_SuccessOrder.cshtml" />
     <Content Include="Views\Shared\_PartialBanner.cshtml" />
+    <Content Include="Views\Orders\ViewOrdersForAdmin.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

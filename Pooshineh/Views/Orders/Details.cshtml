@@ -29,10 +29,20 @@
     <title>order details</title>
     <link href="~/Content/bootstrap.rtl.min.css" rel="stylesheet" />
     <link href="~/Content/order_details.css" rel="stylesheet" />
+    <style>
+        .dorder .card-1 {
+            box-shadow: 2px 2px 10px 0px #ffc107 !important;
+        }
+
+        .dorder .card-2 {
+            box-shadow: 1px 1px 3px 0px rgb(112, 115, 139) !important;
+        }
+
+    </style>
 </head>
 <body dir="rtl">
 
-    @if (Model.Table_Cart.UserID == user.ID)
+    @if (Model.Table_Cart.UserID == user.ID || user.RoleID == 1)
     {
         <div class="text-center bg-warning py-5 fw-bolder rounded-1 text-white my-5"><h3>جزئیات سفارش</h3></div>
         <hr />
